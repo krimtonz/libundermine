@@ -6,7 +6,7 @@ void menu_checkbox_draw(menu_item_t *item){
     int data = (int)item->data;
     static gfx_texture *checkbox_tex = NULL;
     if(!checkbox_tex){
-        checkbox_tex = __resource_get(R_CHECKBOX);
+        checkbox_tex = resource_get(R_CHECKBOX);
     }
     uint32_t color = DEFAULT_COLOR;
     if(item->owner->selected_item == item){

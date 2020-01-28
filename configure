@@ -582,7 +582,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 PACKAGE_URL=
 
-ac_default_prefix=/opt/n64
+ac_default_prefix=/opt/n64/mips64/n64-sysroot/usr
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -2041,8 +2041,8 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-CFLAGS="-g -ffunction-sections -fdata-sections"
-CXXFLAGS="-g -ffunction-sections -fdata-sections"
+CFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
+CXXFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
 
 # Check whether --enable-lto was given.
 if test "${enable_lto+set}" = set; then :

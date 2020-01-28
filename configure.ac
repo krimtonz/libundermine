@@ -8,12 +8,12 @@ AC_DEFUN([AC_PROG_AR],
 [AC_CHECK_TOOL(AR, ar, :)])
 ])
 
-AC_PREFIX_DEFAULT([/opt/n64])
+AC_PREFIX_DEFAULT([/opt/n64/mips64/n64-sysroot/usr])
 
 AC_SUBST([CFLAGS])
 AC_SUBST([CXXFLAGS])
-CFLAGS="-g -ffunction-sections -fdata-sections"
-CXXFLAGS="-g -ffunction-sections -fdata-sections"
+CFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
+CXXFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
 
 AC_ARG_ENABLE([lto],
     [AS_HELP_STRING]([--enable-lto],

@@ -1,3 +1,11 @@
+#include <startup.h>
+#include "resource.h"
+
+__attribute__ ((used))
+CTOR void libundermine_init(void){
+    resource_init();
+}
+
 #include <grc.c>
 #include <startup.c>
 #include <vector/vector.c>

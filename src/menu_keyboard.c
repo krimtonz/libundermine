@@ -156,9 +156,9 @@ static void key_draw(menu_item_t *item){
     }
     char c = source[data->row][data->col];
     if(c == 0x01){
-        gfx_draw_sprite(__resource_get(R_ICON), menu_item_x(item), menu_item_y(item), 5, 8, 8);
+        gfx_draw_sprite(resource_get(R_ICON), menu_item_x(item), menu_item_y(item), 5, 8, 8);
     }else if(c == 0x08){
-        gfx_draw_sprite(__resource_get(R_ICON), menu_item_x(item), menu_item_y(item), 6, 8, 8);
+        gfx_draw_sprite(resource_get(R_ICON), menu_item_x(item), menu_item_y(item), 6, 8, 8);
     }else{
         gfx_printf(menu_item_x(item), menu_item_y(item), "%c", source[data->row][data->col]);
     }

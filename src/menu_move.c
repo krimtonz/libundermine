@@ -57,7 +57,7 @@ static void menu_move_draw(menu_item_t *item){
     }else if(item->owner->selected_item == item){
         color = SELECTED_COLOR;
     }
-    gfx_draw_sprite_color(__resource_get(R_ICON), menu_item_x(item), menu_item_y(item),
+    gfx_draw_sprite_color(resource_get(R_ICON), menu_item_x(item), menu_item_y(item),
                           2, 8, 8, color);
 }
 

@@ -11,7 +11,6 @@ static void menu_gfx_button_draw(menu_item_t *item){
     gfx_draw_sprite_color(sprite->texture, menu_item_x(item), menu_item_y(item), sprite->on_tile, sprite->width, sprite->height, color);
 }
 
-
 menu_item_t *menu_button_add(menu_t *menu, uint16_t cell_x, uint16_t cell_y, char *text, menu_item_event_cb_t on_activate, void *activate_data){
     menu_item_t *item = menu_add(menu, cell_x, cell_y);
     if(item){

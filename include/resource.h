@@ -9,12 +9,27 @@
 #include "gfx.h"
 #include "menu.h"
 
-enum resource {
-    R_CHECKBOX,
-    R_ICON,
-    R_END
-};
+#define RESOURCE_MAX    256
 
-void           *__resource_get(enum resource resource);
+#define R_CHECKBOX      0
+#define R_ICON          1
+#define R_END           2
 
+typedef void   *(*resource_ctor)    (int resource_id);
+typedef void    (*resource_dtor)    (int resource_id);
+
+typedef struct {
+    int             resource_id;
+    const char     *resource_name;
+    void           *data;
+    resource_ctor   ctor;
+    resource_dtor   dtor;
+} resource_ent_t;
+
+void           *resource_get        (int resource);
+void            resource_free       (int resource);
+resource_ent_t *resource_create     (const char *name, resource_ctor ctor, resource_dtor dtor);
+void           *grc_ctor            (int resource_id);
+void            resource_init       (void);
+extern void *test;
 #endif

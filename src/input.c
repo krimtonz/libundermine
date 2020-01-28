@@ -139,10 +139,10 @@ void input_update(void){
     static uint16_t *bind_pad = NULL;
     static _Bool *bind_state = NULL;
     if(bind_pad == NULL){
-        bind_pad = malloc(__bind_cnt * sizeof(*bind_pad));
+        bind_pad = calloc(__bind_cnt, sizeof(*bind_pad));
     }
     if(bind_state == NULL){
-        bind_state = malloc(__bind_cnt * sizeof(*bind_state));
+        bind_state = calloc(__bind_cnt, sizeof(*bind_state));
     }
 
     for(int i = 0;i < __bind_cnt;i++){
@@ -150,7 +150,7 @@ void input_update(void){
         bind_pad[i] = bind_get_bitmask(*b);
         int *cs = &__bind_component_state[i];
         int j = 0;
-        uint16_t c = BIND_END;
+        uint16_t c = 0;
         if(((__pad_reserved & bind_pad[i]) && !__bind_override[i]) || !__input_enabled){
             *cs = 0;
         }else{

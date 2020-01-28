@@ -1,71 +1,85 @@
-prefix  = @prefix@
-exec_prefix = @exec_prefix@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
 install_libdir  = @libdir@
 install_hdrs	= @includedir@/$(NAME)
-CC  = @CC@
-CXX = @CXX@
-AR  = @AR@ rcs
-INSTALL = @INSTALL@
-MKDIR_P = @MKDIR_P@
-ALL_CFLAGS  = -I./include -g -c -MMD -MP -std=gnu11 -Wall @CFLAGS@ $(CFLAGS)
+CC              = @CC@
+CXX             = @CXX@
+AR              = @AR@ rcs
+INSTALL         = @INSTALL@
+MKDIR_P         = @MKDIR_P@
+GRC             = grc
+ALL_CFLAGS      = -I./include -g -c -MMD -MP -std=gnu11 -Wall @CFLAGS@ $(CFLAGS)
 ALL_CPPFLAGS    = @CPPFLAGS@ $(CPPFLAGS)
-NAME    =	libundermine
-CFILES  = *.c
-OBJDIR  = obj
-LIBDIR  = lib
-SRCDIR  = src
+NAME            = libundermine
+CFILES          = *.c
+OBJDIR          = obj
+LIBDIR          = lib
+SRCDIR          = src
+RESDIR          = res
+RESDESC         = res.json
 GBI_VERSIONS    = fast3d f3dex f3dex2
 
-LIBUNDERMINE    = $(foreach v,$(GBI_VERSIONS),libundermine-$(v))
-LIBUNDERMINE-FAST3D = $(OBJ-libundermine-fast3d)
-LIBUNDERMINE-F3DEX = $(OBJ-libundermine-f3dex)
-LIBUNDERMINE-F3DEX2 = $(OBJ-libundermine-f3dex2)
-LIBUNDERMINE-INSTALL = $(foreach v,$(GBI_VERSIONS),install-libundermine-$(v))
-all : $(LIBUNDERMINE)
-clean	:
+LIBUNDERMINE            = $(foreach v,$(GBI_VERSIONS),libundermine-$(v))
+LIBUNDERMINE-FAST3D     = $(OBJ-libundermine-fast3d)
+LIBUNDERMINE-F3DEX      = $(OBJ-libundermine-f3dex)
+LIBUNDERMINE-F3DEX2     = $(OBJ-libundermine-f3dex2)
+LIBUNDERMINE-INSTALL    = $(foreach v,$(GBI_VERSIONS),install-libundermine-$(v))
+
+all                     : $(LIBUNDERMINE)
+
+clean	                :
 	rm -rf $(OBJDIR) $(LIBDIR)
-distclean	: clean
+
+distclean	            : clean
 	rm -rf makefile config.log config.status
-install	: $(LIBUNDERMINE-INSTALL)
+
+install	                : $(LIBUNDERMINE-INSTALL)
 	$(MKDIR_P) "$(install_hdrs)"
 	cp -R -p include/* "$(install_hdrs)"
 
-.PHONY  : all install clean distclean
+.PHONY                  : all install clean distclean
 
 define bin_template
-SRCDIR-$(1) = src
-OBJDIR-$(1) = obj/$(1)
-LIBDIR-$(1) = lib/$(1)
-CSRC-$(1)	:= $$(foreach s,$$(CFILES),$$(wildcard $$(SRCDIR-$(1))/$$(s)))
-COBJ-$(1)   = $$(patsubst $$(SRCDIR-$(1))/%,$$(OBJDIR-$(1))/%.o,$$(CSRC-$(1)))
-ARCHIVE-$(1)    = $$(LIBDIR-$(1))/$(1).a
-ISTALL-$(1)	= $$(install_libdir)/$(1).a
-INSTALL-$(1)	= install-$(1)
-OBJ-$(1)	= $$(COBJ-$(1))
-OUTDIR-$(1) = $$(OBJDIR-$(1)) $$(LIBDIR-$(1))
-BUILD-$(1)  = $(1)
-CLEAN-$(1)  = clean-$(1)
-$$(BUILD-$(1))	: $$(ARCHIVE-$(1))
-$$(CLEAN-$(1))	:
+SRCDIR-$(1)             = src
+OBJDIR-$(1)             = obj/$(1)
+LIBDIR-$(1)             = lib/$(1)
+RESDIR-$(1)             = res
+CSRC-$(1)	           := $$(foreach s,$$(CFILES),$$(wildcard $$(SRCDIR-$(1))/$$(s)))
+COBJ-$(1)               = $$(patsubst $$(SRCDIR-$(1))/%,$$(OBJDIR-$(1))/%.o,$$(CSRC-$(1)))
+RESSRC-$(1)            := $$(wildcard $$(RESDIR-$(1))/*)
+RESOBJ-$(1)             = $$(patsubst $$(RESDIR-$(1))/%,$$(OBJDIR-$(1))/%.o,$$(RESSRC-$(1)))
+ARCHIVE-$(1)            = $$(LIBDIR-$(1))/$(1).a
+ISTALL-$(1)	            = $$(install_libdir)/$(1).a
+INSTALL-$(1)	        = install-$(1)
+OBJ-$(1)	            = $$(COBJ-$(1)) $$(RESOBJ-$(1))
+OUTDIR-$(1)             = $$(OBJDIR-$(1)) $$(LIBDIR-$(1))
+BUILD-$(1)              = $(1)
+CLEAN-$(1)              = clean-$(1)
+$$(BUILD-$(1))	        : $$(ARCHIVE-$(1))
+
+$$(CLEAN-$(1))	        :
 	rm -rf $$(OUTDIR-$(1))
 
-$$(COBJ-$(1))	:   $$(OBJDIR-$(1))/%.o: $$(SRCDIR-$(1))/% | $$(OBJDIR-$(1))
+$$(COBJ-$(1))	        : $$(OBJDIR-$(1))/%.o: $$(SRCDIR-$(1))/% | $$(OBJDIR-$(1))
 	$(CC) $$(ALL_CPPFLAGS) $$(ALL_CFLAGS) $$< -o $$@
 
-$$(ARCHIVE-$(1))	: $$(COBJ-$(1)) | $$(LIBDIR-$(1))
+$$(ARCHIVE-$(1))	    : $$(OBJ-$(1)) | $$(LIBDIR-$(1))
 	$(AR) $$@ $$^
 
-$$(OUTDIR-$(1))	:
+$$(OUTDIR-$(1))	        :
 	mkdir -p $$@
 
-$$(INSTALL-$(1))	: $$(ISTALL-$(1))
+$$(RESOBJ-$(1))         : $$(OBJDIR-$(1))/%.o: $$(RESDIR-$(1))/% | $$(OBJDIR-$(1))
+	$(GRC) $$< -d $(RESDESC) -o $$@
 
-$$(ISTALL-$(1))	: $$(ARCHIVE-$(1))
+$$(INSTALL-$(1))	    : $$(ISTALL-$(1))
+
+$$(ISTALL-$(1))	        : $$(ARCHIVE-$(1))
 	$(INSTALL) -p $$< $$(install_libdir)
 endef
 
 $(foreach v,$(GBI_VERSIONS),$(eval $(call bin_template,libundermine-$(v))))
 
 $(LIBUNDERMINE-FAST3D)  : CPPFLAGS ?= -DF3D_GBI
-$(LIBUNDERMINE-F3DEX)  : CPPFLAGS ?= -DF3DEX_GBI
+$(LIBUNDERMINE-F3DEX)   : CPPFLAGS ?= -DF3DEX_GBI
 $(LIBUNDERMINE-F3DEX2)  : CPPFLAGS ?= -DF3DEX_GBI_2
