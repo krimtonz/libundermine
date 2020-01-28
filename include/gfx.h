@@ -44,6 +44,7 @@ typedef struct {
 void            gfx_init                    (size_t gfx_size, gfx_texture *font, Gfx **gfx_finish_p);
 void            gfx_begin                   (void);
 void            gfx_finish                  (void);
+void            gfx_finish_set              (Gfx **gfx_append_p);
 
 void           *gfx_data_push               (void *data, size_t size);
 void            gfx_append                  (Gfx *gfx, size_t size);

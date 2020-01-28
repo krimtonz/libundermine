@@ -174,6 +174,10 @@ void gfx_finish(void){
     gfx_disp_d = gfx_disp + ((gfx_size + sizeof(*gfx_disp_d) - 1) / (sizeof (*gfx_disp_d) * sizeof(gfx_disp_d)));
 }
 
+void gfx_finish_set(Gfx **gfx_append_p){
+    p_gfx_p = gfx_append_p;
+}
+
 /* Custom display list functions */
 
 void gfx_append(Gfx *gfx, size_t size){
