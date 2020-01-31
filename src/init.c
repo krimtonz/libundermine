@@ -1,5 +1,5 @@
 #include <startup.h>
-#include "resource.h"
+#include <libundermine.h>
 
 __attribute__ ((used))
 CTOR void libundermine_init(void){

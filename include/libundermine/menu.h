@@ -4,8 +4,8 @@
 * definitions for menu elements
 */
 
-#ifndef _MENU_H
-#define _MENU_H
+#ifndef _LIBUM_MENU_H
+#define _LIBUM_MENU_H
 #include <list/list.h>
 #include <stdint.h>
 #include <stdlib.h>

@@ -4,8 +4,8 @@
 * definitions for graphics utilities
 */
 
-#ifndef _GU_H
-#define _GU_H
+#ifndef _LIBUM_GU_H
+#define _LIBUM_GU_H
 
 #include <n64/gbi.h>
 

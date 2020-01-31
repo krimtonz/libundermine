@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "gfx.h"
-#include "watches.h"
+#include <libundermine.h>
 
 void watch_printf(watch_t *watch, uint32_t color){
     char buf[16] = {0};

@@ -4,9 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <malloc.h>
-#include "gfx.h"
-#include "resource.h"
-#include "gu.h"
+#include <libundermine.h>
 
 #ifdef LITE
 #define     GFX_SIZE 0x1500

@@ -4,8 +4,8 @@
 * definitions for input handling
 */
 
-#ifndef _INPUT_H
-#define _INPUT_H
+#ifndef _LIBUM_INPUT_H
+#define _LIBUM_INPUT_H
 
 #include "menu.h"
 

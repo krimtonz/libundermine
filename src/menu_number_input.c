@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include "menu.h"
-#include "gfx.h"
+#include <libundermine.h>
 
 struct item_data {
     uint32_t                value;

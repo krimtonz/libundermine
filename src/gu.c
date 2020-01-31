@@ -1,5 +1,5 @@
 #include <math.h>
-#include "gu.h"
+#include <libundermine.h>
 
 void guPerspectiveF(MtxF *mf, uint16_t *perspNorm, float fovy, float aspect,
                     float near, float far, float scale)

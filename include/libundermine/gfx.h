@@ -4,8 +4,8 @@
 * definitions for graphics drawing
 */
 
-#ifndef _GFX_H
-#define _GFX_H
+#ifndef _LIBUM_GFX_H
+#define _LIBUM_GFX_H
 #include <n64.h>
 #include <stdarg.h>
 

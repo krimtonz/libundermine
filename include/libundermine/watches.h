@@ -4,8 +4,8 @@
 * Memory watch definitions
 */
 
-#ifndef _WATCHES_H
-#define _WATCHES_H
+#ifndef _LIBUM_WATCHES_H
+#define _LIBUM_WATCHES_H
 
 #include <stdint.h>
 

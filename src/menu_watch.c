@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include "watches.h"
-#include "menu.h"
+#include <libundermine.h>
 
 struct item_data {
     watch_t         *watch;

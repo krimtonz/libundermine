@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include "menu.h"
-#include "resource.h"
+#include <libundermine.h>
 
 static void menu_gfx_button_draw(menu_item_t *item){
     menu_sprite_t *sprite = item->data;

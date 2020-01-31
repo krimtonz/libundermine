@@ -1,5 +1,4 @@
-#include "menu.h"
-#include "resource.h"
+#include <libundermine.h>
 
 #define DEFAULT_CELL_SIZE 8
 

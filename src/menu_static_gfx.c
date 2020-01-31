@@ -1,7 +1,5 @@
 #include <stdlib.h>
-#include "menu.h"
-#include "gfx.h"
-#include "resource.h"
+#include <libundermine.h>
 
 struct item_data {
     gfx_texture    *texture;

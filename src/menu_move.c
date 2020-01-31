@@ -1,7 +1,5 @@
 #include <stdlib.h>
-#include "input.h"
-#include "menu.h"
-#include "resource.h"
+#include <libundermine.h>
 
 struct item_data {
     int16_t *x;
@@ -66,7 +64,7 @@ static void menu_move_remove(menu_item_t *item){
     item->data = NULL;
 }
 
-menu_item_t *menu_move_button_add(menu_t *menu, uint16_t x, uint16_t y, int16_t *move_x, int16_t *move_y){    
+menu_item_t *menu_move_button_add(menu_t *menu, uint16_t x, uint16_t y, int16_t *move_x, int16_t *move_y){
     menu_item_t *item = menu_add(menu, x, y);
     if(item){
         struct item_data *data = malloc(sizeof(*data));

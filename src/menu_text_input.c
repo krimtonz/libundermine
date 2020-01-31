@@ -1,6 +1,6 @@
 #include <string.h>
 #include <malloc.h>
-#include "menu.h"
+#include <libundermine.h>
 
 struct item_data {
     char   *value;

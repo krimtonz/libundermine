@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
-#include "input.h"
-#include "resource.h"
+#include <libundermine.h>
 
 #define MAX_STR_LEN         30
 
@@ -61,7 +60,7 @@ static void keyboard_input_draw(menu_item_t *item){
     int input_len = strlen(input_buf);
     int x = menu_item_x(item);
     int y = menu_item_y(item);
-    
+
     if(cursor_pos > 0){
         memcpy(input_buf_pre, input_buf, cursor_pos);
         input_buf_pre[cursor_pos] = 0;
@@ -179,7 +178,7 @@ static int key_onactivate(event_handler_t *handler, menu_event_t event, void **e
     input_buf[cursor_pos] = source[data->row][data->col];
     if(cursor_pos < sizeof(input_buf) - 1){
         cursor_pos++;
-    } 
+    }
     if(input_buf[cursor_pos] == 0){
         input_buf[cursor_pos] = '_';
     }

@@ -4,8 +4,8 @@
 * definitions for loading graphic resources
 */
 
-#ifndef _RESOURCE_H
-#define _RESOURCE_H
+#ifndef _LIBUM_RESOURCE_H
+#define _LIBUM_RESOURCE_H
 #include "gfx.h"
 #include "menu.h"
 

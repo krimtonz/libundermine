@@ -1,4 +1,4 @@
-#include "menu.h"
+#include <libundermine.h>
 
 int menu_submenu_onactivate(event_handler_t *handler, menu_event_t event, void **event_data){
     menu_item_t *item = handler->subscriber;

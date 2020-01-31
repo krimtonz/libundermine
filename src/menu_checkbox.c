@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include "menu.h"
-#include "resource.h"
+#include <libundermine.h>
 
 void menu_checkbox_draw(menu_item_t *item){
     int data = (int)item->data;

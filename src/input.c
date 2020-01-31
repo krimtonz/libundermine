@@ -1,7 +1,5 @@
 #include <stdlib.h>
-#include "input.h"
-#include "menu.h"
-#include "resource.h"
+#include <libundermine.h>
 
 uint32_t button_colors[16] = {
     0xFFF000FF,

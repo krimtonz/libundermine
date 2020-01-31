@@ -1,6 +1,6 @@
 #include <grc.h>
 #include <list/list.h>
-#include "resource.h"
+#include <libundermine.h>
 
 static struct list  resource_list;
 static int          next_resource_id;

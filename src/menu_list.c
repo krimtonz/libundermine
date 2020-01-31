@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "menu.h"
+#include <libundermine.h>
 
 struct item_data {
     char                  **text;
