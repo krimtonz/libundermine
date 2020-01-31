@@ -170,6 +170,9 @@ void gfx_finish(void){
     gfx_disp = disp_w;
     gfx_disp_p = gfx_disp;
     gfx_disp_d = gfx_disp + ((gfx_size + sizeof(*gfx_disp_d) - 1) / (sizeof (*gfx_disp_d) * sizeof(gfx_disp_d)));
+
+    /* write out data cache to memory */
+    osWritebackDCache(gfx_disp_work, gfx_size);
 }
 
 void gfx_finish_set(Gfx **gfx_append_p){
