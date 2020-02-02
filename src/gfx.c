@@ -32,13 +32,30 @@ static int      rdp_stack_pos[RDP_MODE_ALL];
 gfx_font       *kfont;
 
 static Gfx      rcp_init[] = {
-    gsSPLoadGeometryMode(0),
+    /* gsSPLoadGeometryMode(0),
     gsDPSetScissor(G_SC_NON_INTERLACE,
               0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
 
     gsDPSetOtherMode(G_CYC_1CYCLE | G_AD_DISABLE | G_CD_DISABLE | G_CK_NONE | G_TC_FILT | G_TD_CLAMP | G_TP_NONE | G_TL_TILE | G_TT_NONE | G_PM_NPRIMITIVE | G_TF_POINT,
                     G_ZS_PRIM | G_AC_NONE | G_RM_XLU_SURF | G_RM_XLU_SURF2),
-    gsSPEndDisplayList()
+    gsSPEndDisplayList() */
+    gsSPLoadGeometryMode(0),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetRenderMode(G_RM_XLU_SURF, G_RM_XLU_SURF2),
+    gsDPSetScissor(G_SC_NON_INTERLACE,
+                  0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
+    gsDPSetAlphaDither(G_AD_DISABLE),
+    gsDPSetColorDither(G_CD_DISABLE),
+    gsDPSetAlphaCompare(G_AC_NONE),
+    gsDPSetDepthSource(G_ZS_PRIM),
+    gsDPSetCombineKey(G_CK_NONE),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsDPSetTextureDetail(G_TD_CLAMP),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPPipelineMode(G_PM_NPRIMITIVE),
+    gsSPEndDisplayList(),
 };
 
 /* rdp mode functions */
