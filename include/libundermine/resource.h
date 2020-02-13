@@ -31,5 +31,4 @@ void            resource_free       (int resource);
 resource_ent_t *resource_create     (const char *name, resource_ctor ctor, resource_dtor dtor);
 void           *grc_ctor            (int resource_id);
 void            resource_init       (void);
-extern void *test;
 #endif

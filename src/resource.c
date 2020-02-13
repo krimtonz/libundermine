@@ -4,7 +4,7 @@
 
 static struct list  resource_list;
 static int          next_resource_id;
-void *test = NULL;
+
 static resource_ent_t *resource_find(int resource_id){
     for(resource_ent_t *ent = resource_list.first;ent;ent = list_next(ent)){
         if(ent->resource_id == resource_id){
@@ -47,8 +47,7 @@ void resource_init(void){
     };
     list_push_back(&resource_list, &checkbox_res);
     list_push_back(&resource_list, &icons_res);
-    test = resource_get(R_CHECKBOX);
-    next_resource_id = 2;
+    next_resource_id = R_END;
 }
 
 void *resource_get(int resource_id){
