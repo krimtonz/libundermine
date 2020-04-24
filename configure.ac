@@ -12,8 +12,8 @@ AC_PREFIX_DEFAULT([/opt/n64/mips64/n64-sysroot/usr])
 
 AC_SUBST([CFLAGS])
 AC_SUBST([CXXFLAGS])
-CFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
-CXXFLAGS="-g -ffunction-sections -fdata-sections $CFLAGS"
+CFLAGS="-g -ffunction-sections -fdata-sections -fno-reorder-blocks -mno-check-zero-division $CFLAGS"
+CXXFLAGS="-g -ffunction-sections -fdata-sections -fno-reorder-blocks -mno-check-zero-division $CFLAGS"
 
 AC_ARG_ENABLE([lto],
     [AS_HELP_STRING]([--enable-lto],
