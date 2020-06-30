@@ -320,7 +320,7 @@ static void gfx_printchars(gfx_font *font, uint16_t x, uint16_t y, uint32_t colo
         int tile_end = tile_start + chars_per_tile;
         gfx_load_tile(font->texture, i);
         int char_x = 0;
-        rdp_mode_replace(RDP_MODE_COLOR, COLOR_BLACK);
+        rdp_mode_replace(RDP_MODE_COLOR, color & 0xFF);
         for(int j = 0;j < charcnt; j++, char_x += font->c_width){
             char c = chars[j];
             if(c < 33){
